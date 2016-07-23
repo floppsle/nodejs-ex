@@ -3,14 +3,18 @@ var express = require('express'),
     fs      = require('fs'),
     app     = express(),
     coap = require('coap'),
-    server = coap.createServer();
+    server = coap.createServer(),
+    get_ip = require('ipware')().get_ip;
+
 
 server.on('request', function (req, res) {
+    console.log("Got request from " + get_ip(req).clientIp);
     res.end('Hello ' + req.url.split('/')[1] + '\n')
 })
 
 // the default CoAP port is 5683
-server.listen();
+server.listen(5683);
+console.log("Started to listen to port 5683")
 
 
 /*app.engine('html', require('ejs').renderFile);

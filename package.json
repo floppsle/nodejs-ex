@@ -5,7 +5,8 @@
   "main": "server.js",
   "dependencies": {
     "express": "^4.13.4",
-    "coap": "0.17.0"
+    "coap": "0.17.0",
+    "ipware": "0.0.8"
   },
   "engine": {
     "node": "*",
