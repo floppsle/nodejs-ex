@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
 app.listen(port, ip);
 
 
-/*var dgram = require('dgram');
+var dgram = require('dgram');
 var server = dgram.createSocket('udp4');
 
 server.on('listening', function () {
@@ -29,7 +29,7 @@ server.on('message', function (message, remote) {
 
 });
 
- server.bind(port, ip);*/
+server.bind(1236, ip);
 
 
 // the default CoAP port is 5683
