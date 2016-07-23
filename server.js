@@ -3,13 +3,13 @@ var express = require('express'),
     fs      = require('fs'),
     app     = express(),
     coap = require('coap'),
-    server = coap.createServer(),
+//server = coap.createServer(),
     get_ip = require('ipware')().get_ip;
 
 app.engine('html', require('ejs').renderFile);
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
-    ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+    ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 app.get('/', function (req, res) {
     res.render('index.html', { pageCountMessage : null});
@@ -25,14 +25,15 @@ app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
 
-server.on('request', function (req, res) {
-    console.log("Got request from " + get_ip(req).clientIp);
-    res.end('Hello ' + req.url.split('/')[1] + '\n')
-})
 
 // the default CoAP port is 5683
-server.listen();
+/*server.listen();
+ server.on('request', function (req, res) {
+ console.log("Got request from " + get_ip(req).clientIp);
+ res.end('Hello ' + req.url.split('/')[1] + '\n')
+ })
 
+ */
 module.exports = app ;
 
 /*
