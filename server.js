@@ -16,7 +16,7 @@ server.on('request', function (req, res) {
 })
 
 // the default CoAP port is 5683
-server.listen(server_port, server_ip_address);
+server.listen();
 console.log("Started to listen to port " + server_port + " and ip " + server_ip_address)
 
 /*app.engine('html', require('ejs').renderFile);
