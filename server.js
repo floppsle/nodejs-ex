@@ -17,15 +17,19 @@ app.get('/', function (req, res) {
 app.listen(port, ip);
 
 
+server.on('request', function (req, res) {
+    res.end('Hello ' + req.url.split('/')[1] + '\n')
+})
+
 // the default CoAP port is 5683
 server.listen(1236, ip, function () {
-    //var req = coap.request('coap://localhost/Matteo')
+    //var req = coap.request('coap://localhost:1236/Matteo')
     var req = coap.request('coap://nodejsserver-dilight01.0ec9.hackathon.openshiftapps.com/Matteo')
 
     req.on('response', function (res) {
         res.pipe(process.stdout)
         res.on('end', function () {
-            process.exit(0)
+            //process.exit(0)
         })
     })
 
@@ -33,10 +37,6 @@ server.listen(1236, ip, function () {
 })
 
 
-server.on('request', function (req, res) {
-    console.log("Got request from " + get_ip(req).clientIp);
-    res.end('Hello ' + req.url.split('/')[1] + '\n')
-})
 
 /*var dgram = require('dgram');
 var server = dgram.createSocket('udp4');
