@@ -9,8 +9,14 @@ var express = require('express'),
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 1235,
     ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
+app.get('/', function (req, res) {
+    res.end("hallo");
+});
 
-var dgram = require('dgram');
+app.listen(port, ip);
+
+
+/*var dgram = require('dgram');
 var server = dgram.createSocket('udp4');
 
 server.on('listening', function () {
@@ -23,7 +29,7 @@ server.on('message', function (message, remote) {
 
 });
 
-server.bind(port, ip);
+ server.bind(port, ip);*/
 
 
 // the default CoAP port is 5683
