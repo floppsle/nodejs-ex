@@ -6,7 +6,7 @@ var express = require('express'),
 //server = coap.createServer(),
     get_ip = require('ipware')().get_ip;
 
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 1234,
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 1235,
     ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 app.get('/', function (req, res) {
