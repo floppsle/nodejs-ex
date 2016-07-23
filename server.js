@@ -6,19 +6,11 @@ var express = require('express'),
 //server = coap.createServer(),
     get_ip = require('ipware')().get_ip;
 
-app.engine('html', require('ejs').renderFile);
-
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 app.get('/', function (req, res) {
-    res.render('index.html', { pageCountMessage : null});
-});
-
-// error handling
-app.use(function(err, req, res, next){
-  console.error(err.stack);
-  res.status(500).send('Something bad happened!');
+    res.end("hallo");
 });
 
 app.listen(port, ip);
