@@ -2,10 +2,29 @@
 var express = require('express'),
     fs      = require('fs'),
     app     = express(),
-    eps     = require('ejs'),
-    morgan  = require('morgan');
+    coap = require('coap'),
+    server = coap.createServer();
 
-app.engine('html', require('ejs').renderFile);
+server.on('request', function (req, res) {
+    res.end('Hello ' + req.url.split('/')[1] + '\n')
+})
+
+// the default CoAP port is 5683
+server.listen(function () {
+    var req = coap.request('coap://localhost/Matteo')
+
+    req.on('response', function (res) {
+        res.pipe(process.stdout)
+        res.on('end', function () {
+            process.exit(0)
+        })
+    })
+
+    req.end()
+})
+
+
+/*app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
@@ -101,5 +120,5 @@ initDb(function(err){
 
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
-
+ */
 module.exports = app ;
