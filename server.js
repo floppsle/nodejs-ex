@@ -18,7 +18,7 @@ app.listen(port, ip);
 
 
 // the default CoAP port is 5683
-server.listen(function () {
+server.listen(1236, ip, function () {
     //var req = coap.request('coap://localhost/Matteo')
     var req = coap.request('coap://nodejsserver-dilight01.0ec9.hackathon.openshiftapps.com/Matteo')
 
