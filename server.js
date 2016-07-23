@@ -6,19 +6,6 @@ var express = require('express'),
     server = coap.createServer(),
     get_ip = require('ipware')().get_ip;
 
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
-
-
-server.on('request', function (req, res) {
-    console.log("Got request from " + get_ip(req).clientIp);
-    res.end('Hello ' + req.url.split('/')[1] + '\n')
-})
-
-// the default CoAP port is 5683
-server.listen();
-console.log("Started to listen to port " + server_port + " and ip " + server_ip_address)
-
 app.engine('html', require('ejs').renderFile);
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
@@ -37,6 +24,14 @@ app.use(function(err, req, res, next){
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
+
+server.on('request', function (req, res) {
+    console.log("Got request from " + get_ip(req).clientIp);
+    res.end('Hello ' + req.url.split('/')[1] + '\n')
+})
+
+// the default CoAP port is 5683
+server.listen();
 
 module.exports = app ;
 
