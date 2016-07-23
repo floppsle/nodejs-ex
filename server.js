@@ -10,6 +10,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 1235,
     ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 app.get('/', function (req, res) {
+    console.log("Got HTTP TCP Request on port " + port)
     res.end("hallo");
 });
 
